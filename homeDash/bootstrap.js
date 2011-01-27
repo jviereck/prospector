@@ -2326,7 +2326,7 @@ function addDashboard(window) {
 
           case "https":
             action = "loadsite";
-            text = "secure " + getHostText(newURI);
+            text = "secure " + getHostText(newURI) + " - " + url;
             break;
 
           case "javascript":
@@ -2341,7 +2341,7 @@ function addDashboard(window) {
 
           default:
             action = "loadsite";
-            text = getHostText(newURI);
+            text = getHostText(newURI) + " - " + url;
             break;
         }
       }
