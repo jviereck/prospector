@@ -925,11 +925,6 @@ function addDashboard(window) {
       }
     }));
 
-    // Dismiss the preview if the mouse moves
-    listeners.push(listen(window, window, "mousemove", function() {
-      showPage.stop(true);
-    }));
-
     // Show the dashboard when first starting
     dashboard.open = "switch";
 
@@ -3356,26 +3351,15 @@ function addDashboard(window) {
     if (!vkMetaIsDown) {
       return;
     }
+    // Do a "next tab" for down or right scrolls
+    showPage(evt.detail < 0, false);
 
     evt.preventDefault();
     evt.stopPropagation();
-
-    let now = Date.now();
-    if (now - fxIcon.lastScroll < 350)
-      return;
-    fxIcon.lastScroll = now;
-
-    // Do a "next tab" for down or right scrolls
-    showPage(evt.detail < 0, false);
   }, false);
 
   // Allow scrolling through tabs when pointing at the icon
   fxIcon.addEventListener("DOMMouseScroll", function({detail}) {
-    let now = Date.now();
-    if (now - fxIcon.lastScroll < 350)
-      return;
-    fxIcon.lastScroll = now;
-
     // Do a "next tab" for down or right scrolls
     showPage(detail < 0, false);
   }, false);
